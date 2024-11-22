@@ -6,3 +6,4 @@ seaborn==0.12.2
 matplotlib==3.7.1
 scipy==1.10.1
 setuptools==65.5.0
+pillow-simd==9.5.0.post1
