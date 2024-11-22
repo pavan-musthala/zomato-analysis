@@ -38,7 +38,12 @@ st.markdown("---")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('zomato.csv')
+    try:
+        # Try to load from the current directory first (for local development)
+        df = pd.read_csv('zomato.csv')
+    except FileNotFoundError:
+        # If not found, try loading from the data directory (for deployment)
+        df = pd.read_csv('data/zomato.csv')
     
     # Basic data cleaning
     df.dropna(inplace=True)
@@ -130,9 +135,12 @@ def load_data():
     
     return df
 
-# Load data
+# Load data with error handling
 try:
     df = load_data()
+    if df.empty:
+        st.error("Error: Dataset is empty")
+        st.stop()
 except Exception as e:
     st.error(f"Error loading data: {str(e)}")
     st.stop()
@@ -472,13 +480,13 @@ st.markdown(f"""
 
 ### 💡 Recommendations
 1. For Customers:
-   - Best rated areas for dining: {', '.join(location_ratings.head(3).index)}
-   - Best value for money: {rest_type_ratings[rest_type_ratings['avg_rating'] > rest_type_ratings['avg_rating'].mean()]['rest_type'].iloc[0]}
+   - Best rated areas for dining: {', '.join(location_ratings.head(3).index) if not location_ratings.empty else 'No data available'}
+   - Best value restaurants: {', '.join(rest_type_ratings['rest_type'].head(3)) if not rest_type_ratings.empty else 'No data available'}
 
 2. For Restaurant Owners:
    - Consider online ordering to stay competitive
    - Focus on quality as higher prices don't guarantee better ratings
-   - Popular locations for new ventures: {', '.join(filtered_df['location'].value_counts().head(3).index)}
+   - Popular locations for new ventures: {', '.join(filtered_df['location'].value_counts().head(3).index) if not filtered_df.empty else 'No data available'}
 
 3. For Investors:
    - High-potential segments: {', '.join(rest_type_ratings.head(3)['rest_type'])}
