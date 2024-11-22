@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Zomato Restaurant Analysis Dashboard
 
 An interactive dashboard analyzing Zomato restaurant data using Streamlit.
@@ -47,3 +48,6 @@ MIT License
 
 ## Author
 Your Name
+=======
+# zomato-analysis
+>>>>>>> bfc10b562899b1e0a29a9bd63f8b2a9d81b96bb8
