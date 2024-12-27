@@ -48,7 +48,7 @@ The dataset used in this analysis is from Zomato's restaurant data, containing i
 ### Getting the Data
 Due to file size limitations, the dataset is not included in this repository. To run this dashboard:
 
-1. Download the Zomato dataset from [Kaggle](https://www.kaggle.com/datasets/shrutimehta/zomato-restaurants-data)
+1. Download the Zomato dataset from [Google Drive](https://drive.google.com/file/d/1AI0hdk5m0povk_RnlyxC5LCF1IbLcy2A/view?usp=sharing)
 2. Place the downloaded `zomato.csv` file in the `data/` directory of this project
 
 ## License
